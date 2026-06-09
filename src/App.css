@@ -1,0 +1,176 @@
+/* src/App.css */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+/* ------------------------- */
+/* Base / Layout            */
+/* ------------------------- */
+
+#root {
+  width: 440px;
+  height: 780px;
+  position: relative;
+  margin: 0 auto;
+  overflow: hidden;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #050505;
+  color: #333;
+}
+
+/* Landing page (phone card) */
+.app-container {
+  width: 440px;
+  height: 780px;
+  background-image: url('./assets/background.webp');
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  border-radius: 32px;
+  overflow: hidden;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
+  z-index: 1;
+}
+
+/* ------------------------- */
+/* Animated overlay elements */
+/* Uses image drop-shadow to follow visible shape */
+.cat-animated,
+.phone-animated {
+  position: absolute;
+  z-index: 3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  background-color: transparent;
+  transition: transform 0.22s ease;
+}
+
+.cat-animated {
+  position: absolute;
+  top: 265px;
+  left: 198px;
+  width: 62px;
+  height: 156px;
+}
+
+.phone-animated {
+  position: absolute;
+  top: 627px;
+  left: 79px;
+  width: 62px;
+  height: 78px;
+}
+
+.cat-animated:hover,
+.phone-animated:hover { transform: translateY(-2px); }
+
+.cat-animated img {
+  width: 150%;
+  height: 150%;
+  object-fit: contain;
+  display: block;
+  transition: filter 0.22s ease, transform 0.22s ease;
+}
+
+.phone-animated img {
+  width: 130%;
+  height: 130%;
+  object-fit: contain;
+  display: block;
+  transition: filter 0.22s ease, transform 0.22s ease;
+}
+
+.cat-animated:hover img,
+.phone-animated:hover img {
+  filter: drop-shadow(0 0 0 #FFD700) drop-shadow(0 0 24px rgba(255, 215, 0, 0.85));
+  transform: scale(1.03);
+}
+
+/* ------------------------- */
+/* Overlay / Popup          */
+/* ------------------------- */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.24s ease, visibility 0.24s ease;
+}
+
+.overlay.active { opacity: 1; visibility: visible; }
+
+.book-popup {
+  width: 720px;
+  max-height: 700px;
+  padding: 0;
+  border-radius: 0;
+  overflow-y: auto;
+  position: relative;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+  box-shadow: none;
+  background: transparent;
+}
+
+.book-popup::-webkit-scrollbar {
+  display: none;
+}
+
+.book-popup-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.92);
+  color: #333;
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.16);
+}
+
+.book-popup-close:hover {
+  background: rgba(255, 255, 255, 1);
+}
+
+.book-popup-image {
+  width: 100%;
+  max-width: 680px;
+  height: auto;
+  display: block;
+  margin: 24px auto 0;
+  object-fit: contain;
+  box-shadow: none;
+  cursor: pointer;
+}
+
+/* Bare popup image (no modal box) */
+.bare-popup-image {
+  max-width: 70%;
+  max-height: 70%;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+  border-radius: 0;
+  box-shadow: none;
+  cursor: pointer;
+}
+
+/* End of file */
