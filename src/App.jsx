@@ -4,8 +4,8 @@ import './App.css';
 const assetUrls = {
   catAnimated: new URL('./assets/cat-animated.webp', import.meta.url).href,
   phoneAnimated: new URL('./assets/phone-animated.webp', import.meta.url).href,
-  pets: new URL('./assets/pets.webp', import.meta.url).href,
-  books: new URL('./assets/bookss.webp', import.meta.url).href,
+  pets: new URL('./assets/kucing-kicau.gif', import.meta.url).href,
+  books: new URL('./assets/alien-cat.gif', import.meta.url).href,
 };
 
 // ─── APP ─────────────────────────────────────────────────────────────────────
