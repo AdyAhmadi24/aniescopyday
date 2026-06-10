@@ -32,7 +32,7 @@
   background-position: center center;
   position: absolute;
   /* border-radius: 32px; */
-  overflow: hidden;
+  overflow: visible;
   box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
   z-index: 1;
 }
@@ -41,7 +41,8 @@
 /* Animated overlay elements */
 /* Uses image drop-shadow to follow visible shape */
 .cat-animated,
-.phone-animated {
+.phone-animated,
+.ady-animated {
   position: absolute;
   z-index: 3;
   display: flex;
@@ -54,22 +55,33 @@
 
 .cat-animated {
   position: absolute;
-  top: 435px;
-  left: 280px;
-  width: 62px;
+  top: 335px;
+  left: 370px;
+  width: 52px;
   height: 156px;
+  z-index: 4;
+}
+
+.ady-animated {
+  position: absolute;
+  top: 256px;
+  left: 192px;
+  width: 220px;
+  height: 230px;
 }
 
 .phone-animated {
   position: absolute;
-  top: 627px;
-  left: 79px;
-  width: 62px;
+  top: 630px;
+  left: 315px;
+  width: 52px;
   height: 78px;
 }
 
 .cat-animated:hover,
 .phone-animated:hover { transform: translateY(-2px); }
+
+.ady-animated:hover{ transform: translateY(-1px); }
 
 .cat-animated img {
   width: 150%;
@@ -79,16 +91,18 @@
   transition: filter 0.22s ease, transform 0.22s ease;
 }
 
-.phone-animated img {
-  width: 130%;
-  height: 130%;
+.phone-animated img,
+.ady-animated img {
+  width: 100%;
+  height: 100%;
   object-fit: contain;
   display: block;
   transition: filter 0.22s ease, transform 0.22s ease;
 }
 
 .cat-animated:hover img,
-.phone-animated:hover img {
+.phone-animated:hover img,
+.ady-animated:hover img {
   filter: drop-shadow(0 0 0 #FFD700) drop-shadow(0 0 24px rgba(255, 215, 0, 0.85));
   transform: scale(1.03);
 }

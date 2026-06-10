@@ -6,6 +6,7 @@ const assetUrls = {
   phoneAnimated: new URL('./assets/phone-animated.webp', import.meta.url).href,
   pets: new URL('./assets/kucing-kicau.gif', import.meta.url).href,
   books: new URL('./assets/alien-cat.gif', import.meta.url).href,
+  ady: new URL('./assets/ady.webp', import.meta.url).href,
 };
 
 // ─── APP ─────────────────────────────────────────────────────────────────────
@@ -41,6 +42,14 @@ function App() {
         >
           <img src={assetUrls.phoneAnimated} alt="Phone Animated" />
         </div>
+
+        <div
+          className="ady-animated"
+          onClick={() => setActivePopup('ady_animated')}
+          title="Klik Ady Animasi"
+        >
+          <img src={assetUrls.ady} alt="Ady Animated" />
+        </div>
       </div>
 
       <div className={`overlay ${activePopup ? 'active' : ''}`}>
@@ -64,6 +73,18 @@ function App() {
             />
           </div>
         )}
+         {activePopup === 'ady_animated' && (
+          <div className="book-popup">
+            <img
+              src={assetUrls.ady}
+              alt="Ady"
+              className="book-popup-image"
+              onClick={closePopup}
+              title="Klik untuk menutup"
+            />
+          </div>
+        )}
+        
       </div>
     </div>
   );
