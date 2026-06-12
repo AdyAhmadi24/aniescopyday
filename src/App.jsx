@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import './App.css';
 import SpotifyPlaylist from './SpotifyPlaylist';
+import TvPopup from './TvPopup';
 
 const assetUrls = {
   catAnimated: new URL('./assets/cat-animated.webp', import.meta.url).href,
@@ -9,6 +10,9 @@ const assetUrls = {
   books: new URL('./assets/alien-cat.gif', import.meta.url).href,
   ady: new URL('./assets/ady.webp', import.meta.url).href,
   music: new URL('./assets/music.webp', import.meta.url).href,
+  tv: new URL('./assets/tivi.webp', import.meta.url).href,
+  gameHover1: new URL('./assets/game-hover1.webp', import.meta.url).href,
+  gameHover2: new URL('./assets/game-hover2.webp', import.meta.url).href,
 };
 
 // ─── APP ─────────────────────────────────────────────────────────────────────
@@ -61,7 +65,16 @@ function App() {
           <img src={assetUrls.ady} alt="Ady Animated" />
         </div>
 
-        
+        <div className="tv-animated" title="TV">
+          <img src={assetUrls.tv} alt="TV Animated" />
+          <div
+            className="tv-hit"
+            onClick={() => setActivePopup('tv_animated')}
+            title="Klik TV"
+            aria-label="TV clickable area"
+          />
+        </div>
+
       </div>
 
       <div className={`overlay ${activePopup ? 'active' : ''}`}>
@@ -98,6 +111,12 @@ function App() {
         )}
         {activePopup === 'music_animated' && (
           <SpotifyPlaylist onClose={closePopup} />
+        )}
+        {activePopup === 'tv_animated' && (
+          <TvPopup
+            onClose={closePopup}
+            images={[assetUrls.gameHover1, assetUrls.gameHover2]}
+          />
         )}
       </div>
     </div>

@@ -40,10 +40,7 @@
 /* ------------------------- */
 /* Animated overlay elements */
 /* Uses image drop-shadow to follow visible shape */
-.cat-animated,
-.phone-animated,
-.ady-animated
-.music-animated {
+.cat-animated, .phone-animated, .ady-animated, .music-animated, .tv-animated {
   position: absolute;
   z-index: 3;
   display: flex;
@@ -87,9 +84,34 @@
   height: 40px;
 }
 
+.tv-animated {
+  position: absolute;
+  top: 535px;
+  left: 165px;
+  width: 120px;
+  height: 80px;
+  /* keep visual size but disable parent pointer events so only .tv-hit handles clicks */
+  pointer-events: none;
+}
+
+.tv-animated .tv-hit {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80px; /* clickable hitbox width */
+  height: 48px; /* clickable hitbox height */
+  background: transparent;
+  border-radius: 6px;
+  pointer-events: auto;
+  cursor: pointer;
+  z-index: 6;
+}
+
 .cat-animated:hover,
 .phone-animated:hover,
-.music-animated:hover { transform: translateY(-2px); }
+.music-animated:hover,
+.tv-animated:hover { transform: translateY(-2px); }
 
 .ady-animated:hover{ transform: translateY(-1px); }
 
@@ -114,7 +136,8 @@
 .cat-animated:hover img,
 .phone-animated:hover img,
 .ady-animated:hover img,
-.music-animated:hover img {
+.music-animated:hover img,
+.tv-animated:hover img {
   filter: drop-shadow(0 0 0 #FFD700) drop-shadow(0 0 24px rgba(255, 215, 0, 0.85));
   transform: scale(1.03);
 }
@@ -461,5 +484,101 @@
   border-radius: 12px;
   background: #191414;
 }
+
+/* End of file */
+
+/* ─────────────────────────────────────── */
+/* TV Popup / Carousel                      */
+/* ─────────────────────────────────────── */
+.tv-popup {
+  width: 100%;
+  max-width: 720px;
+  max-height: 90vh;
+  background: linear-gradient(180deg, rgba(0,0,0,0.6), rgba(0,0,0,0.85));
+  border-radius: 12px;
+  position: relative;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.tv-popup-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 215, 0, 0.9);
+  color: #333;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.tv-popup-content {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.tv-image-wrap {
+  width: 100%;
+  max-width: 560px;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  border-radius: 8px;
+  background: #111;
+  padding: 12px;
+}
+
+.tv-popup-image {
+  width: 100%;
+  height: auto;
+  max-height: 70vh;
+  object-fit: contain;
+  display: block;
+}
+
+.tv-arrow {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255,255,255,0.06);
+  color: #ffd700;
+  font-size: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.16s ease, background 0.16s ease;
+}
+
+.tv-arrow:hover { transform: scale(1.06); background: rgba(255,255,255,0.1); }
+
+.tv-dots {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.tv-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.12);
+  border: none;
+  cursor: pointer;
+}
+
+.tv-dot.active { background: rgba(255,215,0,0.9); }
 
 /* End of file */
