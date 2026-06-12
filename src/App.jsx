@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import './App.css';
+import SpotifyPlaylist from './SpotifyPlaylist';
 
 const assetUrls = {
   catAnimated: new URL('./assets/cat-animated.webp', import.meta.url).href,
@@ -7,6 +8,7 @@ const assetUrls = {
   pets: new URL('./assets/kucing-kicau.gif', import.meta.url).href,
   books: new URL('./assets/alien-cat.gif', import.meta.url).href,
   ady: new URL('./assets/ady.webp', import.meta.url).href,
+  music: new URL('./assets/music.webp', import.meta.url).href,
 };
 
 // ─── APP ─────────────────────────────────────────────────────────────────────
@@ -44,12 +46,22 @@ function App() {
         </div>
 
         <div
+          className="music-animated"
+          onClick={() => setActivePopup('music_animated')}
+          title="Klik Music Animasi"
+        >
+          <img src={assetUrls.music} alt="Music Animated" />
+        </div>
+
+        <div
           className="ady-animated"
           onClick={() => setActivePopup('ady_animated')}
           title="Klik Ady Animasi"
         >
           <img src={assetUrls.ady} alt="Ady Animated" />
         </div>
+
+        
       </div>
 
       <div className={`overlay ${activePopup ? 'active' : ''}`}>
@@ -73,7 +85,7 @@ function App() {
             />
           </div>
         )}
-         {activePopup === 'ady_animated' && (
+        {activePopup === 'ady_animated' && (
           <div className="book-popup">
             <img
               src={assetUrls.ady}
@@ -84,7 +96,9 @@ function App() {
             />
           </div>
         )}
-        
+        {activePopup === 'music_animated' && (
+          <SpotifyPlaylist onClose={closePopup} />
+        )}
       </div>
     </div>
   );

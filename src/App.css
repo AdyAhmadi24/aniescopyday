@@ -42,7 +42,8 @@
 /* Uses image drop-shadow to follow visible shape */
 .cat-animated,
 .phone-animated,
-.ady-animated {
+.ady-animated
+.music-animated {
   position: absolute;
   z-index: 3;
   display: flex;
@@ -78,8 +79,17 @@
   height: 78px;
 }
 
+.music-animated {
+  position: absolute;
+  top: 126px;
+  left: 252px;
+  width: 70px;
+  height: 40px;
+}
+
 .cat-animated:hover,
-.phone-animated:hover { transform: translateY(-2px); }
+.phone-animated:hover,
+.music-animated:hover { transform: translateY(-2px); }
 
 .ady-animated:hover{ transform: translateY(-1px); }
 
@@ -92,7 +102,8 @@
 }
 
 .phone-animated img,
-.ady-animated img {
+.ady-animated img,
+.music-animated img {
   width: 100%;
   height: 100%;
   object-fit: contain;
@@ -102,7 +113,8 @@
 
 .cat-animated:hover img,
 .phone-animated:hover img,
-.ady-animated:hover img {
+.ady-animated:hover img,
+.music-animated:hover img {
   filter: drop-shadow(0 0 0 #FFD700) drop-shadow(0 0 24px rgba(255, 215, 0, 0.85));
   transform: scale(1.03);
 }
@@ -189,6 +201,265 @@
   border-radius: 0;
   box-shadow: none;
   cursor: pointer;
+}
+
+/* ─────────────────────────────────────── */
+/* Music Player Popup                      */
+/* ─────────────────────────────────────── */
+.music-player-popup {
+  width: 100%;
+  max-width: 600px;
+  max-height: 85vh;
+  background: linear-gradient(135deg, #1e1e1e 0%, #2d2d2d 100%);
+  border-radius: 16px;
+  padding: 32px 24px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+  color: #fff;
+  overflow-y: auto;
+}
+
+.music-player-popup::-webkit-scrollbar {
+  width: 8px;
+}
+
+.music-player-popup::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+.music-player-popup::-webkit-scrollbar-thumb {
+  background: rgba(255, 215, 0, 0.5);
+  border-radius: 4px;
+}
+
+.music-player-popup::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 215, 0, 0.8);
+}
+
+.music-player-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 215, 0, 0.9);
+  color: #333;
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);
+  transition: all 0.2s ease;
+}
+
+.music-player-close:hover {
+  background: rgba(255, 215, 0, 1);
+  box-shadow: 0 6px 16px rgba(255, 215, 0, 0.5);
+  transform: scale(1.05);
+}
+
+.music-player-content {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+}
+
+.music-player-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  background: rgba(255, 215, 0, 0.05);
+  border-radius: 12px;
+  border: 2px solid rgba(255, 215, 0, 0.2);
+}
+
+.music-player-image img {
+  width: 100%;
+  max-width: 120px;
+  height: auto;
+  object-fit: contain;
+}
+
+.music-player-controls {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  background: rgba(255, 215, 0, 0.08);
+  border-radius: 12px;
+}
+
+.music-player-button {
+  width: 56px;
+  height: 56px;
+  border: none;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.8) 0%, rgba(255, 215, 0, 0.6) 100%);
+  color: #333;
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);
+}
+
+.music-player-button:hover {
+  background: linear-gradient(135deg, rgba(255, 215, 0, 1) 0%, rgba(255, 215, 0, 0.8) 100%);
+  transform: scale(1.08);
+  box-shadow: 0 6px 16px rgba(255, 215, 0, 0.5);
+}
+
+.music-player-button:active {
+  transform: scale(0.96);
+}
+
+.music-player-button.playing {
+  animation: pulse 0.6s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);
+  }
+  50% {
+    box-shadow: 0 4px 20px rgba(255, 215, 0, 0.6);
+  }
+}
+
+.music-player-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.music-player-info h3 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 4px;
+  color: #ffd700;
+}
+
+.music-player-info p {
+  font-size: 14px;
+  color: #aaa;
+}
+
+.music-player-lyrics {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.music-player-lyrics h4 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #ffd700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.lyrics-text {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 12px;
+  border-left: 4px solid rgba(255, 215, 0, 0.5);
+  max-height: 300px;
+  overflow-y: auto;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #ddd;
+}
+
+.lyrics-text::-webkit-scrollbar {
+  width: 6px;
+}
+
+.lyrics-text::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 3px;
+}
+
+.lyrics-text::-webkit-scrollbar-thumb {
+  background: rgba(255, 215, 0, 0.4);
+  border-radius: 3px;
+}
+
+.lyrics-text p {
+  margin: 0;
+}
+
+.lyrics-text .lyric-section {
+  color: #ffd700;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 0.5px;
+  margin-top: 8px;
+  margin-bottom: 4px;
+}
+
+/* ─────────────────────────────────────── */
+/* Spotify Playlist Popup                  */
+/* ─────────────────────────────────────── */
+.spotify-playlist-popup {
+  width: 100%;
+  max-width: 700px;
+  max-height: 90vh;
+  background: transparent;
+  border-radius: 12px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+}
+
+.spotify-playlist-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 215, 0, 0.9);
+  color: #333;
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);
+  transition: all 0.2s ease;
+  z-index: 100;
+}
+
+.spotify-playlist-close:hover {
+  background: rgba(255, 215, 0, 1);
+  box-shadow: 0 6px 16px rgba(255, 215, 0, 0.5);
+  transform: scale(1.05);
+}
+
+.spotify-playlist-container {
+  width: 100%;
+  height: 100%;
+  min-height: 600px;
+  display: flex;
+  flex-direction: column;
+}
+
+.spotify-playlist-container iframe {
+  border-radius: 12px;
+  background: #191414;
 }
 
 /* End of file */
